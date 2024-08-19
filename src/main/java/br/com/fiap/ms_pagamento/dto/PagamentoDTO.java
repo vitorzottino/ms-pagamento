@@ -4,6 +4,7 @@ package br.com.fiap.ms_pagamento.dto;
 import br.com.fiap.ms_pagamento.model.Pagamento;
 import br.com.fiap.ms_pagamento.model.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +29,10 @@ public class PagamentoDTO {
     @Enumerated(value = EnumType.STRING)
     private Status status;  // Status do pagamento
     @Column(nullable = false)
+    @Positive(message = "O ID do pedido deve ser um número positivo")
     private Long pedidoId;  // Id do pedido
     @Column(nullable = false)
+    @Positive(message = "O ID da forma de pagamento deve ser um número positivo")
     private Long formaDePagamentoId; // 1 - dinheiro | 2 - cartão | 3 - pix
 
     public PagamentoDTO(Pagamento entity) {
